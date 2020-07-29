@@ -30,6 +30,7 @@ if __name__ == '__main__':
     ok = False
     while not ok:
         path, search_string, progressive, quality = request_data()
+        print("Summary")
         print("Files will be processed with the following characteristics:")
         print(f"Base path: {path}")
         print(f"Search string: {search_string}")
