@@ -26,6 +26,16 @@ def request_data():
     return path, search_string, progressive, quality
 
 
+def process(path, search_string, progressive, quality):
+    processor = FLACImageReprocessor(
+        base_path=path,
+        file_search_string=search_string,
+        progressive=progressive,
+        quality=quality
+    )
+    processor.run()
+
+
 if __name__ == '__main__':
     ok = False
     while not ok:
@@ -36,14 +46,8 @@ if __name__ == '__main__':
         print(f"Search string: {search_string}")
         print(f"Progressive or baseline: {'progressive' if progressive else 'baseline'}")
         print(f"Image quality: {quality}")
-
-        ok = input('is it ok? Y/N\n')
+        print('is it ok? Y/N')
+        ok = input()
         ok = ok in ('Y', 'y')
-    processor = FLACImageReprocessor(
-        base_path=path,
-        file_search_string=search_string,
-        progressive=progressive,
-        quality=quality
-    )
-    processor.run()
+    process(path, search_string, progressive, quality)
 
