@@ -24,11 +24,12 @@ class FLACImageReprocessor:
         file_count = self.file_count
         print(f"There are {self.file_count} files to process")
         for file_num, flac_file in enumerate(file_list):
+            index_ = file_num + 1
             try:
                 base_path, image_in = self.generate_names(flac_file)
                 image_in_path = f"{base_path}/{image_in}"
                 self._created_images.append(image_in_path)
-                print(f"({file_num} / {file_count} - {round(file_num / file_count * 100, 2)})%) Processing: {flac_file}")
+                print(f"({index_} / {file_count} - {round(index_ / file_count * 100, 2)})%) Processing: {flac_file}")
                 images = self.extract_images(flac_file, image_in_path, base_path)
                 self._created_images += [img['file'] for img in images]
                 self._created_images.append(image_in_path)
